@@ -1,6 +1,6 @@
 import React,{ useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
-import { Link, useParams, useNavigate } from 'react-router-dom';
+import { Link, useParams, useNavigate, createSearchParams } from 'react-router-dom';
 import {
   Row,
   Col,
@@ -19,6 +19,7 @@ function ProductScreen() {
   const [qty, setQty] = useState(1)
 
   const productId = useParams();
+  const params = {qty: qty}
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -32,7 +33,10 @@ function ProductScreen() {
   },[dispatch])
 
   const addToCartHandler = () => {
-    navigate(`/cart/${productId.id}`,{state: qty})
+    navigate({
+      pathname: `/cart/${productId.id}`,
+      search: `?${createSearchParams(params)}`
+    })
   }
 
   return (
