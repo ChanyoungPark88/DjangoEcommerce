@@ -25,7 +25,7 @@ function ProductScreen() {
   const dispatch = useDispatch();
 
   const productDetails = useSelector(state => state.productDetails)
-  console.log(productDetails)
+  // console.log(productDetails)
   const { loading, error, product } = productDetails
 
   useEffect(() => {
